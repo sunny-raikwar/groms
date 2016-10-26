@@ -1,4 +1,4 @@
-***Land Detail***
+	***Land Detail***
 Land Id
 Belonging to 
 P.H No.
@@ -140,3 +140,10 @@ account id
 ***Receipt***
 receipt id/number
 amount
+
+***staff***
+full name
+contact no.
+id 
+password
+address

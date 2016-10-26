@@ -1,0 +1,114 @@
+{%extends 'grom/base.html'%}
+{%block title%}Staff Member {%endblock title%}
+
+{%block content%}
+      <!-- Tools -->
+      <section id='tools'>
+        <ul class='breadcrumb' id='breadcrumb'>
+          <li class='title'>Customer Account Details</li>
+        </ul>
+        <div id='toolbar'>
+          
+        </div>
+      </section>
+      <!-- Content -->
+      <div id='content'>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Personal Details
+          </div>
+          <div class='panel-body'></div>
+          <div class='row'>
+            <div align='center' class='col-md-3 col-lg-3'>
+              <img class="img-responisve img-thumbnail" alt="" width="192" height="192" src="../assets/images/thumb_default-bc6b0c05.png" />
+            </div>
+            <div class='col-md-9 col-lg-9'>
+              <table class='table table-user-information'>
+                <tbody>
+                  <tr>
+                    <th>Account no.</th>
+                    <td>1</td>
+                  </tr>
+                  <tr>
+                    <th>Name</th>
+                    <td>Peter Thiel</td>
+                  </tr>
+                  <tr>
+                    <th>Father's Name</th>
+                    <td>Michael Thiel</td>
+                  </tr>
+                  <tr>
+                    <th>Address</th>
+                    <td>221-B Bakers Street</td>
+                  </tr>
+                  <tr>
+                    <th>Contact Number</th>
+                    <td>9826012345</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Loan Details
+          </div>
+          <div class='panel-body'>
+            <table class='table'>
+              <tbody>
+                <tr>
+                  <th>Book no.</th>
+                  <th>Interest</th>
+                  <th>Loan Date</th>
+                  <th>Total Payable</th>
+                  <th>Loan Amount</th>
+                  <th>Due Amount</th>
+                </tr>
+                <tr>
+                  <td>4532</td>
+                  <td>2000/-</td>
+                  <td>11th October 2015</td>
+                  <td>7000/-</td>
+                  <td>5000/-</td>
+                  <td>3000/-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class='panel panel-default grid'>
+          <div class='panel-heading'>
+            <i class='icon-table icon-large'></i>
+            List Of Items
+          </div>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>Metal</th>
+                <th>Weight</th>
+                <th>Purity</th>
+                <th>Net Weight</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Silver Coin</td>
+                <td>2</td>
+                <td>Silver</td>
+                <td>100g</td>
+                <td>90%</td>
+                <td>90g</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+   {%endblock content%}
