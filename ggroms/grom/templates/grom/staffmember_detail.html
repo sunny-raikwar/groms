@@ -5,7 +5,7 @@
       <!-- Tools -->
       <section id='tools'>
         <ul class='breadcrumb' id='breadcrumb'>
-          <li class='title'>Customer Account Details</li>
+          <li class='title'>Staff Details</li>
         </ul>
         <div id='toolbar'>
           
@@ -27,88 +27,34 @@
               <table class='table table-user-information'>
                 <tbody>
                   <tr>
-                    <th>Account no.</th>
-                    <td>1</td>
+                    <th>Login Id</th>
+                    <td>{{member.loginid}}</td>
+                  </tr>
+                  <tr>
+                    <th>Password</th>
+                    <td>{{member.password}}</td>
                   </tr>
                   <tr>
                     <th>Name</th>
-                    <td>Peter Thiel</td>
-                  </tr>
-                  <tr>
-                    <th>Father's Name</th>
-                    <td>Michael Thiel</td>
+                    <td>{{member.fullname}}</td>
                   </tr>
                   <tr>
                     <th>Address</th>
-                    <td>221-B Bakers Street</td>
+                    <td>{{member.address}}</td>
                   </tr>
                   <tr>
                     <th>Contact Number</th>
-                    <td>9826012345</td>
+                    <td>{{member.contact_no}}</td>
+                  </tr>
+                  <tr>
+                    <th>Alternate Contact Number</th>
+                    <td>{{member.alternate_contact_no}}</td>
                   </tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
-        <div class='panel panel-default'>
-          <div class='panel-heading'>
-            <i class='icon-edit icon-large'></i>
-            Loan Details
-          </div>
-          <div class='panel-body'>
-            <table class='table'>
-              <tbody>
-                <tr>
-                  <th>Book no.</th>
-                  <th>Interest</th>
-                  <th>Loan Date</th>
-                  <th>Total Payable</th>
-                  <th>Loan Amount</th>
-                  <th>Due Amount</th>
-                </tr>
-                <tr>
-                  <td>4532</td>
-                  <td>2000/-</td>
-                  <td>11th October 2015</td>
-                  <td>7000/-</td>
-                  <td>5000/-</td>
-                  <td>3000/-</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-        <div class='panel panel-default grid'>
-          <div class='panel-heading'>
-            <i class='icon-table icon-large'></i>
-            List Of Items
-          </div>
-          <table class='table'>
-            <thead>
-              <tr>
-                <th>S.No</th>
-                <th>Item Name</th>
-                <th>Quantity</th>
-                <th>Metal</th>
-                <th>Weight</th>
-                <th>Purity</th>
-                <th>Net Weight</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Silver Coin</td>
-                <td>2</td>
-                <td>Silver</td>
-                <td>100g</td>
-                <td>90%</td>
-                <td>90g</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+             </div>
     </div>
    {%endblock content%}

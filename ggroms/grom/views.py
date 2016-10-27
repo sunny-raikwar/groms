@@ -77,12 +77,16 @@ def edit_staffmember_page(request,member_id):
 
 
 def edit_staffmember(request,member_id):
-	full_name = request.POST['full_name']
-	login_id = request.POST['login_id']
-	password = request.POST['password']
-	address = request.POST['address']
-	contact_no = request.POST['contact_no']
-	alt_contact_no = request.POST['alt_contact_no']
+	full_name = (request.POST['full_name']).strip()
+	login_id = (request.POST['login_id']).strip()
+	password = (request.POST['password']).strip()
+	address = (request.POST['address']).strip()
+	contact_no = (request.POST['contact_no']).strip()
+	alt_contact_no = (request.POST['alt_contact_no']).strip()
 	StaffUser.objects.filter(id = member_id).update(loginid = login_id, password = password,fullname = full_name,
 			contact_no = contact_no, alternate_contact_no = alt_contact_no,address = address)
 	return HttpResponseRedirect('/staffmember/')
+
+def staffmember_detail(request,member_id):
+	member = StaffUser.objects.get(id = member_id)
+	return render(request,'grom/staffmember_detail.html', {'member':member} )
