@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .models import (StaffUser)
+from .models import (StaffUser, AgentDetail)
 
 
 # Create your views here.
@@ -87,6 +87,17 @@ def edit_staffmember(request,member_id):
 			contact_no = contact_no, alternate_contact_no = alt_contact_no,address = address)
 	return HttpResponseRedirect('/staffmember/')
 
+
 def staffmember_detail(request,member_id):
 	member = StaffUser.objects.get(id = member_id)
 	return render(request,'grom/staffmember_detail.html', {'member':member} )
+
+
+def agentinfo(request):
+	agent_list = AgentDetail.objects.all()
+	context = {'agent_list': agent_list}
+	return render(request, 'grom/agentinfo.html')
+
+
+def add_agent_page(request):
+	return render(request,'grom/add_agent_page.html')
