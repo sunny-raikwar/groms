@@ -14,6 +14,7 @@ urlpatterns = [
 	url(r'^edit_staffmember_page/(?P<member_id>.+)/$',views.edit_staffmember_page),
 	url(r'^edit_staffmember/(?P<member_id>.+)/$',views.edit_staffmember),
 	url(r'^staffmember_detail/(?P<member_id>.+)/$',views.staffmember_detail),
-	
+	url(r'^add_customer_page/$',views.add_customer_page),
+	url(r'^add_customer/$',views.add_customer),
 
 ]

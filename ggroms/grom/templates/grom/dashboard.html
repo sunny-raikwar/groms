@@ -23,7 +23,7 @@
         <div class='panel panel-default grid'>
           <div class='panel-heading'>
             <i class='icon-user icon-large'></i>
-            <a href="../forms/">Add New Customer</a>
+            <a href="/add_customer_page/">Add New Customer</a>
           </div>
           <div class='panel-body filters'>
             <div class='row'>
@@ -42,124 +42,39 @@
           <table class='table'>
             <thead>
               <tr>
-                <th>Account Number</th>
+                <th>Serial No</th>
                 <th>Name</th>
-                <th>Father's Name</th>
-                <th>Address</th>
-                <th>Contact Number</th>
+                <th></th>
+                <th>Password</th>
+                <th>Contact No.</th>
                 <th class='actions'>
                   Actions
                 </th>
               </tr>
             </thead>
             <tbody>
+            {% for customer in customers %}
               <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>221B Baker Street</td>
-                <td>9826012345</td>
+                <td>{{forloop.counter}}</td>
+                <td>{{customer.fullname}}</td>
+                <td>{{customer.loginid}}</td>
+                <td>{{customer.password}}</td>
+                <td>{{customer.contact_no}}</td>
                 <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="../customer/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='#'>
+                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="/customer_detail/{{customer.id}}/"><i class="icon-zoom-in"></i></a>
+                  <a class='btn btn-info' href='/edit_customer_page/{{customer.id}}/'>
                     <i class='icon-edit'></i>
                   </a>
-                  <a class='btn btn-danger' href='#'>
+                  <a class='btn btn-danger' href='/delete_customer/{{customer.id}}/' >
                     <i class='icon-trash'></i>
                   </a>
                 </td>
               </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>221B Baker Street</td>
-                <td>9826012345</td>
-                <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="../customer/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>221B Baker Street</td>
-                <td>9826012345</td>
-                <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="../customer/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>221B Baker Street</td>
-                <td>9826012345</td>
-                <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="../customer/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>221B Baker Street</td>
-                <td>9826012345</td>
-                <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="../customer/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='#'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='#'>
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
+            {% endfor %}
+
             </tbody>
           </table>
-          <div class='panel-footer'>
-            <ul class='pagination pagination-sm'>
-              <li>
-                <a href='#'>«</a>
-              </li>
-              <li class='active'>
-                <a href='#'>1</a>
-              </li>
-              <li>
-                <a href='#'>2</a>
-              </li>
-              <li>
-                <a href='#'>3</a>
-              </li>
-              <li>
-                <a href='#'>4</a>
-              </li>
-              <li>
-                <a href='#'>»</a>
-              </li>
-            </ul>
-            <div class='pull-right'>
-              Showing 1 to 5 of 20 entries
-            </div>
-          </div>
+
         </div>
       </div>
 {%endblock content%}
