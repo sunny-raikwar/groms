@@ -17,6 +17,10 @@ urlpatterns = [
 
 	url(r'^agentinfo/$',views.agentinfo),
 	url(r'^add_agent_page/$',views.add_agent_page),
-	
+	url(r'^add_agent/$',views.add_agent),
+	url(r'^edit_agent_page/(?P<agent_id>.+)/$',views.edit_agent_page),
+	url(r'^edit_agent/(?P<agent_id>.+)/$',views.edit_agent),
+	url(r'^delete_agent/(?P<agent_id>.+)/$',views.delete_agent),
+	url(r'^agent_detail/(?P<agent_id>.+)/$',views.agent_detail),
 
 ]

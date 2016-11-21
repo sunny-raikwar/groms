@@ -1,11 +1,11 @@
 {%extends 'grom/base.html'%}
-
+{% load staticfiles %}
 {%block title%}Add New Agent{%endblock title%}
 
 {%block content%}
       <section id='tools'>
         <ul class='breadcrumb' id='breadcrumb'>
-          <li class='title'>Agent Form</li>
+          <li class='title'>Add New Advisor</li>
         </ul>
       </section>
       <!-- Content -->
@@ -13,48 +13,120 @@
         <br>
         <div class='panel panel-default'>
           <div class='panel-heading'>
-            <i class='icon-edit icon-large'></i>
-            Agent Details
+            <!-- <i class='icon-edit icon-large'></i> -->
+             <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+              <li role="presentation" class="active"><a href="#personal_detail" aria-controls="home" role="tab" data-toggle="tab">Personal Detail</a></li>
+              <li role="presentation"><a href="#office_detail" aria-controls="profile" role="tab" data-toggle="tab">Office Detail</a></li>
+            </ul>
+              <!-- ...</div> -->
+              <!-- <div role="tabpanel" class="tab-pane" id="nominee_detail">...</div> -->
           </div>
           <div class='panel-body'>
-            <form class='form-horizontal' method="POST" action="/add_staffmember/">
+            <form class='form-horizontal' method="POST" action="/add_agent/">
             {%csrf_token %}
-              <fieldset>
-                <div class='form-group col-md-8'>
-                  <label class='control-label'>First Name</label>
-                  <input class='form-control' placeholder='Enter First Name' type='text' name = 'first_name'>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="personal_detail">
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>First Name</label>
+                    <input class='form-control' placeholder='Enter First Name' type='text' name='first_name' required="required" />
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Middle Name</label>
+                    <input class='form-control' placeholder='Enter middle Name' type='text' name='middle_name' required="required" />
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Last Name</label>
+                    <input class='form-control' placeholder='Enter last Name' type='text' name='last_name'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Father's Name</label>
+                    <input class='form-control' placeholder='Enter Father Name' type='text' name='father_name'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Mother's Name</label>
+                    <input class='form-control' placeholder="Enter Mother Name" type='text' name='mother_name'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Pancard Number</label>
+                    <input class='form-control' placeholder="Enter pancard Number" type='text' name='pancard'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Address</label>
+                    <input class='form-control' placeholder='Enter Address' type='text' name ='address'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Date of Birth</label>
+                    <input class='form-control' placeholder="Enter Date of birth" type='date' name='dob'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Contact Number</label>
+                    <input class='form-control' placeholder='Enter Contact Number' type='text' name='contact_no'>
+                  </div>
+                   <div class='form-group col-md-8'>
+                    <label class='control-label'>Alternate Contact Number</label>
+                    <input class='form-control' placeholder='Enter Alternate Contact Number' type='text' name='alt_contact_no'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Nominee</label>
+                    <select class="form-control" type="text" name="nomini">
+                      {% for nomini in nomini_list %}
+                        <option value="{{nomini.id}}">{{nomini}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <img class="img-responisve tocenter" alt="" width="192" height="192" src="{% static '/img/thumb_default.png' %}" />
+                  <button class='btn btn-default btn-md col-lg-offset-1'>Upload-Image</button>
                 </div>
-                <div class='form-group col-md-8'>
-                  <label class='control-label'>Middle Name</label>
-                  <input class='form-control' placeholder='Enter Name' type='text' name = 'middle_name'>
-                </div>
-                <div class='form-group col-md-8'>
-                  <label class='control-label'>Login Id </label>
-                  <input class='form-control' placeholder='Enter Login Id' type='text' name = 'login_id'>
-                </div>
-                <div class='form-group col-md-8'>
-                  <label class='control-label'>Password</label>
-                  <input class='form-control' placeholder="Enter Password" type='text' name = 'password'>
-                </div>
-                <img class="img-responisve tocenter" alt="" width="192" height="192" src="../assets/images/thumb_default-bc6b0c05.png" />
-                <div class='form-group col-md-8'>
-                  <label class='control-label'>Address</label>
-                  <input class='form-control' placeholder='Enter Address' type='text' name ='address'>
-                </div>
-                <div class='form-group col-md-8'>
-                  <label class='control-label'>Contact Number</label>
-                  <input class='form-control' placeholder='Enter Contact Number' type='text' name = 'contact_no'>
-                </div>
-                 <div class='form-group col-md-8'>
-                  <label class='control-label'>Alternate Contact Number</label>
-                  <input class='form-control' placeholder='Enter Alternate Contact Number' type='text' name = 'alt_contact_no'>
-                </div>
+
                 <input type="hidden" name="url" value ="{{request.path}}">
-                <button class='btn btn-default btn-md col-lg-offset-1'>Upload-Image</button>
-              </fieldset>
-              <div class='form-actions'>
-                <button  class="button btn btn-default" type="submit"> Submit </button>
-                <a class='btn' href='/dashboard/'>Cancel</a>
+
+                <div role="tabpanel" class="tab-pane" id="office_detail">
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Email-Id</label>
+                    <input class='form-control' placeholder="Enter Email-Id" type='text' name='email'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Date of Joining</label>
+                    <input class='form-control' placeholder="Enter Date of joining" type='date' name='date_of_joining'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Percentage Alloted</label>
+                    <input class='form-control' type='text' name='percentage_alloted'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Introducer</label>
+                    <select class="form-control" type="text" name="introducer">
+                      {% for introducer in introducers %}
+                        <option value="{{introducer.id}}">{{introducer}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Introducer Percentage</label>
+                    <input class='form-control' type='text' name='introducer_percentage'>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Account Number</label>
+                    <select class="form-control" type="text" name="account">
+                      {% for account in account_list %}
+                        <option value="{{account.id}}">{{account}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class='form-group col-md-8'>
+                    <label class='control-label'>Position</label>
+                    <select class="form-control" type="text" name="agent_type">
+                      {% for type in agent_types %}
+                        <option value="{{type.id}}">{{type}}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                  <div class='form-actions col-md-12'>
+                    <button  class="button btn btn-default" type="submit"> Submit </button>
+                    <a class='btn' href='/dashboard/'>Cancel</a>
+                  </div>
+                </div>
               </div>
             </form>
           </div>

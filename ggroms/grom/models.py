@@ -88,10 +88,10 @@ class AgentDetail(models.Model):
 	email = models.EmailField(null=True)
 	date_of_joining = models.DateField()
 	percentage_alloted = models.FloatField()
-	Nomini_id = models.ForeignKey('NominiDetail', on_delete=models.CASCADE)
+	nomini_id = models.ForeignKey('NominiDetail', on_delete=models.CASCADE)
 	type_id = models.ForeignKey('AgentType')
-	introducor_id = models.ForeignKey('self')
-	introducer_percentage = models.FloatField()
+	introducor_id = models.ForeignKey('self', null=True)
+	introducer_percentage = models.FloatField(null=True)
 	account_id = models.ForeignKey('AgentAccount')
 
 	def __str__(self):

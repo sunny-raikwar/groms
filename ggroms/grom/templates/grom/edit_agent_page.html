@@ -1,0 +1,124 @@
+{%extends 'grom/base.html'%}
+{% load staticfiles %}
+{%block title%}Edit Agent Detail{%endblock title%}
+
+{%block content%}
+      <section id='tools'>
+        <ul class='breadcrumb' id='breadcrumb'>
+          <li class='title'>Agent Form</li>
+        </ul>
+      </section>
+      <!-- Content -->
+      <div id='content'>
+        <br>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Agent Details
+          </div>
+          <div class='panel-body'>
+            <form class='form-horizontal' method="POST" action="/edit_agent/{{agent.id}}/">
+            {%  csrf_token %}
+              <fieldset>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>First Name</label>
+                  <input class='form-control' placeholder='Enter First Name' type='text' name='first_name' required="required" value="{{agent.first_name}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Middle Name</label>
+                  <input class='form-control' placeholder='Enter middle Name' type='text' name='middle_name' required="required" value="{{agent.middle_name}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Last Name</label>
+                  <input class='form-control' placeholder='Enter last Name' type='text' name='last_name' value="{{agent.last_name}}">
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Father's Name</label>
+                  <input class='form-control' placeholder='Enter Father Name' type='text' name='father_name' value="{{agent.father_name}}"/>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Mother's Name</label>
+                  <input class='form-control' placeholder="Enter Mother Name" type='text' name='mother_name' value="{{agent.mother_name}}" />
+                </div>
+                <img class="img-responisve tocenter" alt="" width="192" height="192" src="{% static '/img/thumb_default.png' %}" />
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Pancard Number</label>
+                  <input class='form-control' placeholder="Enter pancard Number" type='text' name='pancard' value="{{agent.pancard}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Address</label>
+                  <input class='form-control' placeholder='Enter Address' type='text' name ='address' value="{{agent.address}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Date of Birth</label>
+                  <input class='form-control' type='date' name='dob' value='{{agent.date_of_birth|date:"d/m/Y"}}' >
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Contact Number</label>
+                  <input class='form-control' placeholder='Enter Contact Number' type='text' name='contact_no' value="{{agent.contact_no}}" />
+                </div>
+                 <div class='form-group col-md-8'>
+                  <label class='control-label'>Alternate Contact Number</label>
+                  <input class='form-control' placeholder='Enter Alternate Contact Number' type='text' name='alt_contact_no' value="{{agent.alternate_contact_no}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Email-Id</label>
+                  <input class='form-control' placeholder="Enter Email-Id" type='text' name='email' value="{{agent.email}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Date of Joining</label>
+                  <input class='form-control' placeholder="Enter Date of joining" type='date' name='date_of_joining' value="{{agent.date_of_joining}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Percentage Alloted</label>
+                  <input class='form-control' type='text' name='percentage_alloted' value="{{agent.percentage_alloted}}" />
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Nominee</label>
+                  <select class="form-control" type="text" name="nomini">
+                    {% for nomini in nomini_list %}
+                      <option value="{{nomini.id}}" {%if agent.nomini_id == nomini %}selected{%endif%}>{{nomini}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Agent Type</label>
+                  <select class="form-control" type="text" name="agent_type">
+                    {% for type in agent_types %}
+                      <option value="{{type.id}}" {%if agent.type_id == type %}selected{%endif%}>{{type}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Introducer</label>
+                  <select class="form-control" type="text" name="introducer">
+                    {% for introducer in introducers %}
+                      <option value="{{introducer.id}}" {%if agent.introducor_id == introducer %}selected{%endif%}>{{introducer}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Introducer Percentage</label>
+                  <input class='form-control' type='text' name='introducer_percentage' value="{{agent.introducer_percentage}}">
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Account</label>
+                  <select class="form-control" type="text" name="account">
+                    {% for account in account_list %}
+                      <option value="{{account.id}}" {%if agent.account_id == account %}selected{%endif%}>{{account}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <input type="hidden" name="url" value ="{{request.path}}">
+                <button class='btn btn-default btn-md col-lg-offset-1'>Upload-Image</button>
+              </fieldset>
+              <div class='form-actions'>
+                <button  class="button btn btn-default" type="submit"> update </button>
+                <a class='btn' href='/dashboard/'>Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+{%endblock content%}
