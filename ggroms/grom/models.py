@@ -99,3 +99,68 @@ class AgentDetail(models.Model):  # Advisor table
 		return self.first_name
 
 
+class CustomerDetail(models.Model):
+	MALE = "Male"
+	FEMALE = "Female"
+	gender_choices = (
+		(MALE, 'Male'),
+		(FEMALE, 'Female'),
+		)
+	first_name = models.CharField(max_length=20)
+	middle_name = models.CharField(max_length=20)
+	last_name = models.CharField(max_length=20)
+	date_of_birth = models.DateField()
+	pancard = models.CharField(max_length=50, null=True)
+	address = models.TextField()
+	contact_no = models.CharField(max_length=15)
+	alternate_contact_no = models.CharField(max_length=15, null=True) 
+	email = models.EmailField(null=True)
+	date_of_joining = models.DateField()
+	gender = models.CharField(max_length=6, choices=gender_choices)
+
+	def __str__(self):
+		return self.first_name
+
+class ProjectDetail(models.Model):
+	project_name = models.CharField(max_length = 50)
+	description = models.TextField()
+	land_detail_id = models.ForeignKey('LandDetail')
+	layout_detail_id = models.ForeignKey('LayoutDetail')
+
+
+class LayoutDetail(models.Model):
+	layout_name = models.CharField(max_length = 50)
+	remark = models.TextField()
+	date = models.DateField()
+	area_under_layout = models.FloatField()
+	area_under_plot = models.FloatField()
+	area_under_possession = models.FloatField()
+	area_under_open_space = models.FloatField()
+	area_under_public_utility = models.FloatField()
+	area_under_road = models.FloatField()
+	land_detail_id = models.ForeignKey('LandDetail')
+
+
+class PlotDetail(models.Model):
+	plot_number = models.CharField(max_length = 10)
+	remark = models.TextField()
+	date = models.DateField()
+	total_area = models.FloatField()
+	tan_area = models.FloatField()
+	net_area = models.FloatField()
+	status = models.CharField(max_length = 15)
+	project_id = models.ForeignKey('ProjectDetail')
+	plot_category_id = models.ForeignKey('PlotCategory')
+
+
+class PlotCategory(models.Model):
+	layout_name = models.CharField(max_length = 50)
+	remark = models.TextField()
+	date = models.DateField()
+	area_under_layout = models.FloatField()
+	area_under_plot = models.FloatField()
+	area_under_possession = models.FloatField()
+	area_under_open_space = models.FloatField()
+	area_under_public_utility = models.FloatField()
+	area_under_road = models.FloatField()
+	land_detail_id = models.ForeignKey('LandDetail')

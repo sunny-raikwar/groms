@@ -5,7 +5,7 @@
 {%block content%}
       <section id='tools'>
         <ul class='breadcrumb' id='breadcrumb'>
-          <li class='title'>Forms</li>
+          <li class='title'>Customer</li>
         </ul>
         <div id='toolbar'>
           
@@ -17,43 +17,63 @@
         <div class='panel panel-default'>
           <div class='panel-heading'>
             <i class='icon-edit icon-large'></i>
-            Staff Personal Details
+            Customer Personal Details
           </div>
           <div class='panel-body'>
-            <form class='form-horizontal' method="POST" action="/add_staffmember/">
+            <form class='form-horizontal' method="POST" action="/add_customer/">
             {%csrf_token %}
               <fieldset>
                 <div class='form-group col-md-8'>
-                  <label class='control-label'>Full Name</label>
-                  <input class='form-control' placeholder='Enter Name' type='text' name = 'full_name'>
+                  <label class='control-label'>First Name</label>
+                  <input class='form-control' placeholder='Enter First Name' type='text' name = 'first_name'>
                 </div>
                 <div class='form-group col-md-8'>
-                  <label class='control-label'>Login Id </label>
-                  <input class='form-control' placeholder='Enter Login Id' type='text' name = 'login_id'>
+                  <label class='control-label'>Middle Name </label>
+                  <input class='form-control' placeholder='Enter Middle Name' type='text' name = 'middle_name'>
                 </div>
                 <div class='form-group col-md-8'>
-                  <label class='control-label'>Password</label>
-                  <input class='form-control' placeholder="Enter Password" type='text' name = 'password'>
+                  <label class='control-label'>Last Name</label>
+                  <input class='form-control' placeholder="Enter Last Name " type='text' name = 'last_name'>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Date of Birth</label>
+                  <input class='form-control' placeholder="Enter dd/mm/yyyy " type='Date' name = 'date_of_birth'>
                 </div>
                 <img class="img-responisve tocenter" alt="" width="192" height="192" src="../assets/images/thumb_default-bc6b0c05.png" />
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Address</label>
                   <input class='form-control' placeholder='Enter Address' type='text' name ='address'>
                 </div>
+                 <div class='form-group col-md-8'>
+                  <label class='control-label'>PAN Card Number</label>
+                  <input class='form-control' placeholder='Enter PAN Card Number' type='text' name = 'pancard'>
+                </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Contact Number</label>
                   <input class='form-control' placeholder='Enter Contact Number' type='text' name = 'contact_no'>
                 </div>
-                 <div class='form-group col-md-8'>
+                <div class='form-group col-md-8'>
                   <label class='control-label'>Alternate Contact Number</label>
                   <input class='form-control' placeholder='Enter Alternate Contact Number' type='text' name = 'alt_contact_no'>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Email</label>
+                  <input class='form-control' placeholder='Enter Email' type='text' name = 'email'>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>Date of Joining</label>
+                  <input class='form-control' placeholder='Enter Date of Joining' type='text' name = 'date_of_joining'>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class='control-label'>gender</label>
+                  <input class='form-control' placeholder='Enter Gender' type='text' name = 'gender'>
                 </div>
                 <input type="hidden" name="url" value ="{{request.path}}">
                 <button class='btn btn-default btn-md col-lg-offset-1'>Upload-Image</button>
               </fieldset>
               <div class='form-actions'>
                 <button  class="button btn btn-default" type="submit"> Submit </button>
-                <a class='btn' href='/staffmember/'>Cancel</a>
+                <a class='btn' href='/dashboard/'>Cancel</a>
               </div>
             </form>
           </div>

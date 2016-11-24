@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .models import (StaffUser, AgentDetail, NominiDetail, AgentType, AgentAccount)
+from .models import (StaffUser, CustomerDetail, AgentDetail, NominiDetail, AgentType, AgentAccount)
+
 
 
 # Create your views here.
@@ -157,7 +158,7 @@ def edit_agent_page(request, agent_id):
 
 
 def edit_agent(request, agent_id):
-	url = request.POST['url']
+    url = request.POST['url']
 	first_name = request.POST['first_name']
 	middle_name = request.POST['middle_name']
 	last_name = request.POST['last_name']
@@ -201,3 +202,35 @@ def delete_agent(request, agent_id):
 def agent_detail(request, agent_id):
 	agent = AgentDetail.objects.get(id = agent_id)
 	return render(request,'grom/agent_detail.html', {'agent': agent} )
+
+
+def customer(request):
+	customers= CustomerDetail.objects.all()
+	return render (request,'grom/dashboard.html', {'customers':customers})
+
+
+def add_customer_page(request):
+	return render(request,'grom/add_customer_page.html')
+
+
+def add_customer(request):
+	url = request.POST['url']
+	first_name = request.POST['first_name']
+	middle_name = request.POST['middle_name']
+	last_name = request.POST['last_name']
+	date_of_birth = request.POST['date_of_birth']
+	pancard = request.POST['pancard']
+	address = request.POST['address']
+	contact_no = request.POST['contact_no']
+	alt_contact_no = request.POST['alt_contact_no']
+	email = request.POST['email']
+	gender = request.POST['gender']
+	date_of_joining= request.POST['date_of_joining']
+
+	try:
+		customer = CustomerDetail.objects.get(pancard= pancard)
+		return HttpResponseRedirect(url)
+	except:
+		CustomerDetail.objects.create( pancard = pancard,first_name = first_name, middle_name = middle_name,last_name = last_name, date_of_birth = date_of_birth,
+			contact_no = contact_no, alternate_contact_no = alt_contact_no,address = address , email=email, gender=gender, date_of_joining=date_of_joining)
+	return HttpResponseRedirect('/customer/')
