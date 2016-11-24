@@ -1,4 +1,5 @@
 {%extends 'grom/base.html'%}
+{% load staticfiles %}
 {%block title%}Staff Member {%endblock title%}
 
 {%block content%}
@@ -21,7 +22,7 @@
           <div class='panel-body'></div>
           <div class='row'>
             <div align='center' class='col-md-3 col-lg-3'>
-              <img class="img-responisve img-thumbnail" alt="" width="192" height="192" src="../assets/images/thumb_default-bc6b0c05.png" />
+              <img class="img-responisve img-thumbnail" alt="img" width="192" height="192" src="{% static 'img/thumb_default.png' }%" />
             </div>
             <div class='col-md-9 col-lg-9'>
               <table class='table table-user-information'>
