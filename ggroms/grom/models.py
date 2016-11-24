@@ -74,7 +74,7 @@ class NominiDetail(models.Model):
 		return self.fullname
 
 
-class AgentDetail(models.Model):
+class AgentDetail(models.Model):  # Advisor table
 	first_name = models.CharField(max_length=20)
 	middle_name = models.CharField(max_length=20)
 	last_name = models.CharField(max_length=20)
@@ -86,12 +86,13 @@ class AgentDetail(models.Model):
 	contact_no = models.CharField(max_length=15)
 	alternate_contact_no = models.CharField(max_length=15, null=True) 
 	email = models.EmailField(null=True)
+	image = models.ImageField(upload_to='advisor-images', null=True, blank=True)
 	date_of_joining = models.DateField()
 	percentage_alloted = models.FloatField()
-	Nomini_id = models.ForeignKey('NominiDetail', on_delete=models.CASCADE)
+	nomini_id = models.ForeignKey('NominiDetail', on_delete=models.CASCADE)
 	type_id = models.ForeignKey('AgentType')
-	introducor_id = models.ForeignKey('self')
-	introducer_percentage = models.FloatField()
+	introducor_id = models.ForeignKey('self', null=True)
+	introducer_percentage = models.FloatField(null=True)
 	account_id = models.ForeignKey('AgentAccount')
 
 	def __str__(self):

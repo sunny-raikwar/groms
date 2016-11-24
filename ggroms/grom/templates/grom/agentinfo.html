@@ -1,0 +1,79 @@
+{% extends 'grom/base.html' %}
+{% load staticfiles %}
+
+{%block title%} AgentInfo {%endblock title%}
+
+{%block content%}
+
+
+      <!-- Tools -->
+      <section id='tools'>
+        <ul class='breadcrumb' id='breadcrumb'>
+          <li class='title'>Advisors Details</li>
+        </ul>
+        <div id='toolbar'>
+          <div class='label label-info'>
+            Info
+          </div>
+        </div>
+      </section>
+      <!-- Content -->
+      <div id='content'>
+        <div class='panel panel-default grid'>
+          <div class='panel-heading'>
+            <i class='icon-user icon-large'></i>
+            <a href="/add_agent_page/">Add New Advisor</a>
+          </div>
+          <div class='panel-body filters'>
+            <div class='row'>
+              <div class='col-md-3'>
+                <div class='input-group'>
+                  <input class='form-control' placeholder='Quick search...' type='text'>
+                  <span class='input-group-btn'>
+                    <button class='btn' type='button'>
+                      <i class='icon-search'></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Serial No</th>
+                <th>Name</th>
+                <th>Percentage</th>
+                <th>Post</th>
+                <th>Contact No.</th>
+                <th class='actions'>
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for agent in agent_list %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{agent.first_name}} {{agent.middle_name}}</td>
+                <td>{{agent.percentage_alloted}} %</td>
+                <td>{{agent.type_id}}</td>
+                <td>{{agent.contact_no}}</td>
+                <td class='action'>
+                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="/agent_detail/{{agent.id}}/"><i class="icon-zoom-in"></i></a>
+                  <a class='btn btn-info' href='/edit_agent_page/{{agent.id}}/'>
+                    <i class='icon-edit'></i>
+                  </a>
+                  <a class='btn btn-danger' href='/delete_agent/{{agent.id}}/' >
+                    <i class='icon-trash'></i>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+{%endblock content%}
