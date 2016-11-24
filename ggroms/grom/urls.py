@@ -1,4 +1,5 @@
 from django.conf.urls import url
+from django.conf import settings
 from . import views
 
 
@@ -22,5 +23,9 @@ urlpatterns = [
 	url(r'^edit_agent/(?P<agent_id>.+)/$',views.edit_agent),
 	url(r'^delete_agent/(?P<agent_id>.+)/$',views.delete_agent),
 	url(r'^agent_detail/(?P<agent_id>.+)/$',views.agent_detail),
+
+	url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
+            'document_root': settings.MEDIA_ROOT,
+        }),
 
 ]

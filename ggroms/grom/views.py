@@ -126,6 +126,7 @@ def add_agent(request):
 	nomini_id = NominiDetail.objects.get(id=request.POST['nomini'])
 	type_id = AgentType.objects.get(id=request.POST['agent_type'])
 	account_id = AgentAccount.objects.get(id = request.POST['account'])
+	image = request.FILES['image']
 	try:
 	    introducor_id = AgentDetail.objects.get(id=request.POST['introducer'])
 	    introducer_percentage = request.POST['introducer_percentage']
@@ -134,7 +135,7 @@ def add_agent(request):
 		    date_of_birth=date_of_birth, contact_no=contact_no, alternate_contact_no=alternate_contact_no,
 		    email=email, date_of_joining=date_of_joining, percentage_alloted=percentage_alloted,
 		    nomini_id=nomini_id, type_id=type_id, introducor_id=introducor_id,
-		    introducer_percentage=introducer_percentage, account_id=account_id)
+		    introducer_percentage=introducer_percentage, account_id=account_id, image=image)
 	except:
 		AgentDetail.objects.create(first_name=first_name, middle_name=middle_name, last_name=last_name,
 		    father_name=father_name, mother_name=mother_name, pancard=pancard, address=address,
