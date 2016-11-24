@@ -159,38 +159,40 @@ def edit_agent_page(request, agent_id):
 
 def edit_agent(request, agent_id):
     url = request.POST['url']
-	first_name = request.POST['first_name']
-	middle_name = request.POST['middle_name']
-	last_name = request.POST['last_name']
-	father_name = request.POST['father_name']
-	mother_name = request.POST['mother_name']
-	pancard = request.POST['pancard']
-	address = request.POST['address']
-	date_of_birth = request.POST['dob']
-	contact_no = request.POST['contact_no']
-	alternate_contact_no = request.POST['alt_contact_no']
-	email = request.POST['email']
-	date_of_joining = request.POST['date_of_joining']
-	percentage_alloted = request.POST['percentage_alloted']
-	nomini_id = NominiDetail.objects.get(id=request.POST['nomini'])
-	type_id = AgentType.objects.get(id=request.POST['agent_type'])
-	account_id = AgentAccount.objects.get(id = request.POST['account'])
-	try:
-	    introducor_id = AgentDetail.objects.get(id=request.POST['introducer'])
-	    introducer_percentage = request.POST['introducer_percentage']
-	    AgentDetail.objects.filter(id=agent_id).update(first_name=first_name, middle_name=middle_name, last_name=last_name,
-		    father_name=father_name, mother_name=mother_name, pancard=pancard, address=address,
-		    date_of_birth=date_of_birth, contact_no=contact_no, alternate_contact_no=alternate_contact_no,
-		    email=email, date_of_joining=date_of_joining, percentage_alloted=percentage_alloted,
-		    nomini_id=nomini_id, type_id=type_id, introducor_id=introducor_id,
-		    introducer_percentage=introducer_percentage, account_id=account_id)
-	except:
-		AgentDetail.objects.filter(id=agent_id).update(first_name=first_name, middle_name=middle_name, last_name=last_name,
-		    father_name=father_name, mother_name=mother_name, pancard=pancard, address=address,
-		    date_of_birth=date_of_birth, contact_no=contact_no, alternate_contact_no=alternate_contact_no,
-		    email=email, date_of_joining=date_of_joining, percentage_alloted=percentage_alloted,
-		    nomini_id=nomini_id, type_id=type_id, account_id=account_id)
-	return HttpResponseRedirect('/agentinfo/')
+    first_name = request.POST['first_name']
+    middle_name = request.POST['middle_name']
+    last_name = request.POST['last_name']
+    father_name = request.POST['father_name']
+    mother_name = request.POST['mother_name']
+    pancard = request.POST['pancard']
+    address = request.POST['address']
+    date_of_birth = request.POST['dob']
+    contact_no = request.POST['contact_no']
+    alternate_contact_no = request.POST['alt_contact_no']
+    email = request.POST['email']
+    date_of_joining = request.POST['date_of_joining']
+    percentage_alloted = request.POST['percentage_alloted']
+    nomini_id = NominiDetail.objects.get(id=request.POST['nomini'])
+    type_id = AgentType.objects.get(id=request.POST['agent_type'])
+    account_id = AgentAccount.objects.get(id = request.POST['account'])
+    try:
+    	introducor_id = AgentDetail.objects.get(id=request.POST['introducer'])
+    	introducer_percentage = request.POST['introducer_percentage']
+    	AgentDetail.objects.filter(id=agent_id).update(
+    		first_name=first_name, middle_name=middle_name, last_name=last_name,
+    		father_name=father_name, mother_name=mother_name, pancard=pancard, address=address,
+    		date_of_birth=date_of_birth, contact_no=contact_no, alternate_contact_no=alternate_contact_no,
+    		email=email, date_of_joining=date_of_joining, percentage_alloted=percentage_alloted,
+    		nomini_id=nomini_id, type_id=type_id, introducor_id=introducor_id,
+    		introducer_percentage=introducer_percentage, account_id=account_id)
+    except:
+        AgentDetail.objects.filter(id=agent_id).update(
+        	first_name=first_name, middle_name=middle_name, last_name=last_name,
+        	father_name=father_name, mother_name=mother_name, pancard=pancard, address=address,
+        	date_of_birth=date_of_birth, contact_no=contact_no, alternate_contact_no=alternate_contact_no,
+        	email=email, date_of_joining=date_of_joining, percentage_alloted=percentage_alloted,
+        	nomini_id=nomini_id, type_id=type_id, account_id=account_id)
+    return HttpResponseRedirect('/agentinfo/')
 
 
 def delete_agent(request, agent_id):
