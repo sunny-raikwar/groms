@@ -1,0 +1,93 @@
+{%extends 'grom/base.html' %}
+{%load staticfiles %}
+
+
+{%block title%} billing {%endblock title%}
+
+{%block content%}
+
+
+      <!-- Tools -->
+      <section id='tools'>
+        <ul class='breadcrumb' id='breadcrumb'>
+          <li class='title'>Billing</li>
+        </ul>
+        <div id='toolbar'>
+          
+        </div>
+      </section>
+      <!-- Content -->
+      <div id='content'>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Customer Details
+          </div>
+          <div class='panel-body'>
+            <form>
+              <fieldset>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Customer Name' type='text'>
+                </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Address' type='text'>
+                </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='DD-MM-YYYY' type='date'>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Item List
+          </div>
+          <div class='panel-body'>
+            <form>
+              <fieldset>
+                <div class='form-group col-md-3'>
+                  <input class='form-control' placeholder='Item Code' type='text'>
+                </div>
+                <div class='form-group col-md-3'>
+                  <input class='form-control' placeholder='Item Name' type='text'>
+                </div>
+                <div class='form-group col-md-3'>
+                  <input class='form-control' placeholder='Quantity' type='number'>
+                </div>
+                <div class='form-group col-md-3'>
+                  <button class='btn btn-default' type='button'>Add To List</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div class='panel panel-default grid'>
+          <div class='panel-heading'>
+            <i class='icon-table icon-large'></i>
+            Preview Bill
+          </div>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Item Code</th>
+                <th>Item Name</th>
+                <th>Quantity</th>
+                <th>MRP</th>
+                <th>Discount</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='col-md-offset-5'>
+          <button class='btn btn-default' type='button'>Save</button>
+          <button class='btn btn-default' onClick='window.print()' type='button'>Save And Print</button>
+        </div>
+      </div>
+{%endblock content%}

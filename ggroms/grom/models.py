@@ -120,12 +120,6 @@ class CustomerDetail(models.Model):
 	def __str__(self):
 		return self.first_name
 
-class ProjectDetail(models.Model):
-	project_name = models.CharField(max_length = 50)
-	description = models.TextField()
-	land_detail_id = models.ForeignKey('LandDetail')
-	layout_detail_id = models.ForeignKey('LayoutDetail')
-
 
 class LayoutDetail(models.Model):
 	layout_name = models.CharField(max_length = 50)
@@ -139,6 +133,35 @@ class LayoutDetail(models.Model):
 	area_under_road = models.FloatField()
 	land_detail_id = models.ForeignKey('LandDetail')
 
+	def __str__(self):
+		return self.layout_name
+
+
+class ProjectDetail(models.Model):
+	project_name = models.CharField(max_length = 50)
+	description = models.TextField()
+	land_detail_id = models.ForeignKey('LandDetail')
+	layout_detail_id = models.ForeignKey('LayoutDetail')
+
+	def __str__(self):
+		return self.project_name
+
+
+# class PlotCategory(models.Model):
+# 	layout_name = models.CharField(max_length = 50)
+# 	remark = models.TextField()
+# 	date = models.DateField()
+# 	area_under_layout = models.FloatField()
+# 	area_under_plot = models.FloatField()
+# 	area_under_possession = models.FloatField()
+# 	area_under_open_space = models.FloatField()
+# 	area_under_public_utility = models.FloatField()
+# 	area_under_road = models.FloatField()
+# 	land_detail_id = models.ForeignKey('LandDetail')
+
+# 	def __str__(self):
+# 		return self.first_name
+
 
 class PlotDetail(models.Model):
 	plot_number = models.CharField(max_length = 10)
@@ -149,17 +172,6 @@ class PlotDetail(models.Model):
 	net_area = models.FloatField()
 	status = models.CharField(max_length = 15)
 	project_id = models.ForeignKey('ProjectDetail')
-	plot_category_id = models.ForeignKey('PlotCategory')
 
-
-class PlotCategory(models.Model):
-	layout_name = models.CharField(max_length = 50)
-	remark = models.TextField()
-	date = models.DateField()
-	area_under_layout = models.FloatField()
-	area_under_plot = models.FloatField()
-	area_under_possession = models.FloatField()
-	area_under_open_space = models.FloatField()
-	area_under_public_utility = models.FloatField()
-	area_under_road = models.FloatField()
-	land_detail_id = models.ForeignKey('LandDetail')
+	def __str__(self):
+		return self.plot_number

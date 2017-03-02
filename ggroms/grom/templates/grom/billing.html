@@ -1,0 +1,134 @@
+{%extends 'grom/base.html' %}
+{%load staticfiles %}
+
+
+{%block title%} billing {%endblock title%}
+
+{%block content%}
+    <!-- Tools -->
+      <section id='tools'>
+        <ul class='breadcrumb' id='breadcrumb'>
+          <li class='title'>Billing</li>
+        </ul>
+        <div id='toolbar'>
+          
+            <div class='row'>
+              <div class="col-md-3">
+                <ul class='breadcrumb' id='breadcrumb'>
+                  <li class='title'><b>Billing</b></li>
+                </ul>
+              </div>
+              <div class="col-md-6"></div>
+              <div class='col-md-3'>
+                <div class='input-group'>
+                  <input class='form-control' placeholder='Quick search...' type='text'>
+                  <span class='input-group-btn'>
+                    <button class='btn' type='button'>
+                      <i class='icon-search'></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      </section>
+      <!-- Content -->
+      <div id='content'>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Customer Details
+          </div>
+          <div class='panel-body'>
+            <form>
+              <fieldset>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Customer Name' type='text'>
+                </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Address' type='text'>
+                </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='DD-MM-YYYY' type='date'>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Plot Details
+          </div>
+          <div class='panel-body'>
+            <form>
+              <fieldset>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Plot Number' type='text'>
+                </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Plot Area' type='text'>
+                </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='Project' type='number'>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <i class='icon-edit icon-large'></i>
+            Payment Detail
+          </div>
+          <div class='panel-body'>
+            <form>
+              <fieldset>
+                <div class='form-group col-md-3'>
+                  <input class='form-control' placeholder='Installment Amount' type='text'>
+                </div>
+                <div class='form-group col-md-3'>
+                  <input class='form-control' placeholder='Cheque Number' type='text'>
+                </div>
+                <div class='form-group col-md-3'>
+                  <input class='form-control' placeholder='Date' type='date'>
+                </div>
+                <div class='form-group col-md-3'>
+                  <button class='btn btn-primary' type='button'>Generate Bill</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+
+        <div class='panel panel-default grid'>
+          <div class='panel-heading'>
+            <i class='icon-table icon-large'></i>
+            Payment Record
+          </div>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>S.No</th>
+                <th>Date</th>
+                <th>Reciept No.</th>
+                <th>Cheque No.</th>
+                <th>Total Amount</th>
+                <th>Installment Amount</th>
+                <th>Remaining Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='col-md-offset-5'>
+          <button class='btn btn-default' type='button'>Save</button>
+          <button class='btn btn-default' onClick='window.print()' type='button'>Save And Print</button>
+        </div>
+      </div>
+{%endblock content%}
