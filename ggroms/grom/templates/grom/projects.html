@@ -1,0 +1,76 @@
+{%extends 'grom/base.html' %}
+{%load staticfiles %}
+
+
+{%block title%} project {%endblock title%}
+
+{%block content%}
+
+
+      <!-- Tools -->
+      <section id='tools'>
+        <ul class='breadcrumb' id='breadcrumb'>
+          <li class='title'>Project Information</li>
+        </ul>
+        <div id='toolbar'>
+          <div class='label label-info'>
+            Info
+          </div>
+        </div>
+      </section>
+      <!-- Content -->
+      <div id='content'>
+        <div class='panel panel-default grid'>
+          <div class='panel-heading'>
+            <i class='icon-user icon-large'></i>
+            <a href="#">Add New Project</a>
+          </div>
+          <div class='panel-body filters'>
+            <div class='row'>
+              <div class='col-md-3'>
+                <div class='input-group'>
+                  <input class='form-control' placeholder='Quick search...' type='text'>
+                  <span class='input-group-btn'>
+                    <button class='btn' type='button'>
+                      <i class='icon-search'></i>
+                    </button>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <table class='table'>
+            <thead>
+              <tr>
+                <th>Serial No</th>
+                <th>Project Name</th>
+                <th>Description</th>
+                <th class='actions'>
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for project in projects %}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{project.project_name}}</td>
+                <td>{{project.description}}</td>
+                <td class='action'>
+                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="/customer_detail/{{customer.id}}/"><i class="icon-zoom-in"></i></a>
+                  <a class='btn btn-info' href='/edit_customer_page/{{customer.id}}/'>
+                    <i class='icon-edit'></i>
+                  </a>
+                  <a class='btn btn-danger' href='/delete_customer/{{customer.id}}/' >
+                    <i class='icon-trash'></i>
+                  </a>
+                </td>
+              </tr>
+            {% endfor %}
+
+            </tbody>
+          </table>
+
+        </div>
+      </div>
+{%endblock content%}

@@ -28,6 +28,12 @@ urlpatterns = [
     url(r'^delete_agent/(?P<agent_id>.+)/$', views.delete_agent),
     url(r'^agent_detail/(?P<agent_id>.+)/$', views.agent_detail),
 
+    url(r'^plots/$', views.plots),
+
+    url(r'^projects/$', views.projects),
+
+    url(r'^billing/$', views.billing),
+
     url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT,
     }),

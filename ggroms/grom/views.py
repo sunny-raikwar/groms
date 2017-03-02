@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from .models import (
     StaffUser, CustomerDetail, AgentDetail, NominiDetail, AgentType,
-    AgentAccount)
+    AgentAccount, ProjectDetail, PlotDetail)
 
 
 # Create your views here.
@@ -238,3 +238,17 @@ def add_customer(request):
         CustomerDetail.objects.create(pancard=pancard, first_name=first_name, middle_name=middle_name, last_name=last_name, date_of_birth=date_of_birth,
                                       contact_no=contact_no, alternate_contact_no=alt_contact_no, address=address, email=email, gender=gender, date_of_joining=date_of_joining)
     return HttpResponseRedirect('/customer/')
+
+
+def plots(request):
+    plots = PlotDetail.objects.all()
+    return render(request, 'grom/plots.html', {'plots': plots})
+
+
+def projects(request):
+    projects = ProjectDetail.objects.all()
+    return render(request, 'grom/projects.html', {'projects': projects})
+
+
+def billing(request):
+    return render(request, 'grom/billing.html')
