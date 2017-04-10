@@ -6,7 +6,7 @@
       <!-- Tools -->
       <section id='tools'>
         <ul class='breadcrumb' id='breadcrumb'>
-          <li class='title'>Staff Details</li>
+          <li class='title'>Customer Details</li>
         </ul>
         <div id='toolbar'>
           
@@ -28,28 +28,48 @@
               <table class='table table-user-information'>
                 <tbody>
                   <tr>
-                    <th>Login Id</th>
-                    <td>{{member.loginid}}</td>
+                    <th>First Name</th>
+                    <td>{{customer.first_name}}</td>
                   </tr>
                   <tr>
-                    <th>Password</th>
-                    <td>{{member.password}}</td>
+                    <th>Middle Name</th>
+                    <td>{{customer.middle_name}}</td>
                   </tr>
                   <tr>
-                    <th>Name</th>
-                    <td>{{member.fullname}}</td>
+                    <th>Last Name</th>
+                    <td>{{customer.last_name}}</td>
+                  </tr>
+                  <tr>
+                    <th>Date of Birth</th>
+                    <td>{{customer.date_of_birth}}</td>
+                  </tr>
+                  <tr>
+                    <th>Pancard</th>
+                    <td>{{customer.pancard}}</td>
                   </tr>
                   <tr>
                     <th>Address</th>
-                    <td>{{member.address}}</td>
+                    <td>{{customer.address}}</td>
                   </tr>
                   <tr>
                     <th>Contact Number</th>
-                    <td>{{member.contact_no}}</td>
+                    <td>{{customer.contact_no}}</td>
                   </tr>
                   <tr>
                     <th>Alternate Contact Number</th>
-                    <td>{{member.alternate_contact_no}}</td>
+                    <td>{{customer.alternate_contact_no}}</td>
+                  </tr>
+                  <tr>
+                    <th>Email</th>
+                    <td>{{customer.email}}</td>
+                  </tr>
+                  <tr>
+                    <th>Date of Joining</th>
+                    <td>{{customer.date_of_joining}}</td>
+                  </tr>
+                  <tr>
+                    <th>Gender</th>
+                    <td>{{customer.gender}}</td>
                   </tr>
                 </tbody>
               </table>

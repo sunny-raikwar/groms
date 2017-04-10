@@ -28,48 +28,48 @@
             Customer Personal Details
           </div>
           <div class='panel-body'>
-            <form class='form-horizontal' method="POST" action="/add_customer/">
+            <form class='form-horizontal' method="POST" action="/edit_customer/{{customer.id}}/">
             {%csrf_token %}
               <fieldset>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>First Name</label>
-                  <input class='form-control' placeholder='Enter First Name' type='text' name='first_name' required="required">
+                  <input class='form-control' placeholder='Enter First Name' type='text' name='first_name' required="required" value="{{customer.first_name}}">
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Middle Name </label>
-                  <input class='form-control' placeholder='Enter Middle Name' type='text' name='middle_name' required="required">
+                  <input class='form-control' placeholder='Enter Middle Name' type='text' name='middle_name' required="required" value="{{customer.middle_name}}">
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Last Name</label>
-                  <input class='form-control' placeholder="Enter Last Name " type='text' name='last_name' required="required">
+                  <input class='form-control' placeholder="Enter Last Name " type='text' name='last_name' required="required" value="{{customer.last_name}}">
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Date of Birth</label>
-                  <input class='form-control' placeholder="Enter dd/mm/yyyy" type='Date' name='date_of_birth' required="required">
+                  <input class='form-control' type='Date' name='date_of_birth' required="required" value="{{customer.date_of_birth|date:'Y-m-d'}}">
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Address</label>
-                  <input class='form-control' placeholder='Enter Address' type='text' name='address' required="required" />
+                  <input class='form-control' placeholder='Enter Address' type='text' name='address' required="required" value="{{customer.address}}" />
                 </div>
                  <div class='form-group col-md-8'>
                   <label class='control-label'>PAN Card Number</label>
-                  <input class='form-control' placeholder='Enter PAN Card Number' type='text' name='pancard' required="required" />
+                  <input class='form-control' placeholder='Enter PAN Card Number' type='text' name='pancard' required="required" value="{{customer.pancard}}" />
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Contact Number</label>
-                  <input class='form-control' placeholder='Enter Contact Number' type='Number' name='contact_no' required="required" />
+                  <input class='form-control' placeholder='Enter Contact Number' type='Number' name='contact_no' required="required" value="{{customer.contact_no}}" />
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Alternate Contact Number</label>
-                  <input class='form-control' placeholder='Enter Alternate Contact Number' type='Number' name='alt_contact_no' required="required" />
+                  <input class='form-control' placeholder='Enter Alternate Contact Number' type='Number' name='alt_contact_no' required="required" value="{{customer.alternate_contact_no}}" />
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Email</label>
-                  <input class='form-control' placeholder='Enter Email' type='text' name='email' required="required" />
+                  <input class='form-control' placeholder='Enter Email' type='text' name='email' required="required" value="{{customer.email}}" />
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Date of Joining</label>
-                  <input class='form-control' placeholder='Enter dd/mm/yyyy' type='date' name = 'date_of_joining' required="required" />
+                  <input class='form-control' placeholder='{{customer.date_of_joining}}' type='date' name = 'date_of_joining' required="required" value="{{customer.date_of_joining|date:'Y-m-d'}}" />
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>gender</label>
