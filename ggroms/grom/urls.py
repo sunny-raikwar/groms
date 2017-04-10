@@ -6,7 +6,6 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index),
     url(r'^login/$', views.login),
-    url(r'^dashboard/$', views.dashboard),
     url(r'^clearsession/$', views.clearsession),
 
     url(r'^staffmember/$', views.staffmember),
@@ -17,8 +16,13 @@ urlpatterns = [
     url(r'^edit_staffmember/(?P<member_id>.+)/$', views.edit_staffmember),
     url(r'^staffmember_detail/(?P<member_id>.+)/$', views.staffmember_detail),
 
+    url(r'^customer/$', views.customer),
     url(r'^add_customer_page/$', views.add_customer_page),
     url(r'^add_customer/$', views.add_customer),
+    url(r'^edit_customer_page/(?P<customer_id>.+)/$', views.edit_customer_page),
+    url(r'^edit_customer/(?P<customer_id>.+)/$', views.edit_customer),
+    url(r'^delete_customer/(?P<customer_id>.+)/$', views.delete_customer),
+    url(r'^customer_detail/(?P<customer_id>.+)/$', views.customer_detail),
 
     url(r'^agentinfo/$', views.agentinfo),
     url(r'^add_agent_page/$', views.add_agent_page),

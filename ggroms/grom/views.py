@@ -24,16 +24,12 @@ def login(request):
             user['loginid'] = userstored.loginid
             user['contact_no'] = userstored.contact_no
             request.session['user'] = user
-            return HttpResponseRedirect('/dashboard/')
+            return HttpResponseRedirect('/customer/')
         else:
             request.session['userinvaild'] = "true"
     except:
         request.session['userinvaild'] = "true"
     return HttpResponseRedirect(url)
-
-
-def dashboard(request):
-    return render(request, 'grom/dashboard.html')
 
 
 def clearsession(request):
@@ -210,7 +206,7 @@ def agent_detail(request, agent_id):
 
 def customer(request):
     customers = CustomerDetail.objects.all()
-    return render(request, 'grom/dashboard.html', {'customers': customers})
+    return render(request, 'grom/customer.html', {'customers': customers})
 
 
 def add_customer_page(request):
@@ -235,9 +231,48 @@ def add_customer(request):
         customer = CustomerDetail.objects.get(pancard=pancard)
         return HttpResponseRedirect(url)
     except:
-        CustomerDetail.objects.create(pancard=pancard, first_name=first_name, middle_name=middle_name, last_name=last_name, date_of_birth=date_of_birth,
-                                      contact_no=contact_no, alternate_contact_no=alt_contact_no, address=address, email=email, gender=gender, date_of_joining=date_of_joining)
+        CustomerDetail.objects.create(
+            pancard=pancard, first_name=first_name, middle_name=middle_name,
+            last_name=last_name, date_of_birth=date_of_birth,
+            contact_no=contact_no, alternate_contact_no=alt_contact_no,
+            address=address, email=email, gender=gender, date_of_joining=date_of_joining)
     return HttpResponseRedirect('/customer/')
+
+
+def edit_customer_page(request, customer_id):
+    customer = CustomerDetail.objects.get(id=customer_id)
+    return render(request, 'grom/edit_customer_page.html', {'customer': customer})
+
+
+def edit_customer(request, customer_id):
+    first_name = request.POST['first_name']
+    middle_name = request.POST['middle_name']
+    last_name = request.POST['last_name']
+    date_of_birth = request.POST['date_of_birth']
+    pancard = request.POST['pancard']
+    address = request.POST['address']
+    contact_no = request.POST['contact_no']
+    alt_contact_no = request.POST['alt_contact_no']
+    email = request.POST['email']
+    gender = request.POST['gender']
+    date_of_joining = request.POST['date_of_joining']
+    CustomerDetail.objects.filter(id=customer_id).update(
+            pancard=pancard, first_name=first_name, middle_name=middle_name,
+            last_name=last_name, date_of_birth=date_of_birth,
+            contact_no=contact_no, alternate_contact_no=alt_contact_no,
+            address=address, email=email, gender=gender, date_of_joining=date_of_joining)
+    return HttpResponseRedirect('/customer/')
+
+
+def delete_customer(request, customer_id):
+    customer = CustomerDetail.objects.get(id=customer_id)
+    customer.delete()
+    return HttpResponseRedirect('/customer/')
+
+
+def customer_detail(request, customer_id):
+    customer = CustomerDetail.objects.get(id=customer_id)
+    return render(request, 'grom/customer_detail.html', {'customer': customer})
 
 
 def plots(request):

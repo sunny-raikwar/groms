@@ -44,8 +44,8 @@
               <tr>
                 <th>Serial No</th>
                 <th>Name</th>
-                <th></th>
-                <th>Password</th>
+                <th>Email</th>
+                <th>Date of Joining</th>
                 <th>Contact No.</th>
                 <th class='actions'>
                   Actions
@@ -56,9 +56,9 @@
             {% for customer in customers %}
               <tr>
                 <td>{{forloop.counter}}</td>
-                <td>{{customer.fullname}}</td>
-                <td>{{customer.loginid}}</td>
-                <td>{{customer.password}}</td>
+                <td>{{customer.first_name}} {{customer.middle_name}} {{customer.last_name}}</td>
+                <td>{{customer.email}}</td>
+                <td>{{customer.date_of_joining|date:"d M Y"}}</td>
                 <td>{{customer.contact_no}}</td>
                 <td class='action'>
                   <a data-toggle="tooltip" title="View" class="btn btn-success" href="/customer_detail/{{customer.id}}/"><i class="icon-zoom-in"></i></a>
