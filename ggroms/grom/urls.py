@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^login/$', views.login),
     url(r'^clearsession/$', views.clearsession),
+    url(r'^setting/$', views.setting),
 
     url(r'^staffmember/$', views.staffmember),
     url(r'^add_staffmember_page/$', views.add_staffmember_page),
@@ -35,6 +36,8 @@ urlpatterns = [
     url(r'^plots/$', views.plots),
 
     url(r'^projects/$', views.projects),
+    url(r'^add_project/$', views.add_project),
+
 
     url(r'^billing/$', views.billing),
 

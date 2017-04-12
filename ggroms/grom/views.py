@@ -2,9 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
-from .models import (
-    StaffUser, CustomerDetail, AgentDetail, NominiDetail, AgentType,
-    AgentAccount, ProjectDetail, PlotDetail)
+from .models import *
 
 
 # Create your views here.
@@ -35,6 +33,10 @@ def login(request):
 def clearsession(request):
     request.session.flush()
     return HttpResponseRedirect('/')
+
+
+def setting(request):
+    return render(request, 'grom/setting.html')
 
 
 def staffmember(request):
@@ -280,9 +282,28 @@ def plots(request):
     return render(request, 'grom/plots.html', {'plots': plots})
 
 
+# ==================project views======================
 def projects(request):
+    layout_list = LayoutDetail.objects.all()
+    land_list = LandDetail.objects.all()
     projects = ProjectDetail.objects.all()
-    return render(request, 'grom/projects.html', {'projects': projects})
+    context = {'projects': projects, 'layout_list': layout_list, 'land_list': land_list}
+    return render(request, 'grom/projects.html', context)
+
+
+def add_project(request):
+    url = request.POST['url']
+    project_name = request.POST['project_name']
+    description = request.POST['description']
+    land = LandDetail.objects.get(id=request.POST['land'])
+    layout = LayoutDetail.objects.get(id=request.POST['layout'])
+    try:
+        project = ProjectDetail.objects.get(project_name=project_name)
+    except ProjectDetail.DoesNotExist:
+        ProjectDetail.objects.create(
+            project_name=project_name, description=description,
+            land_detail_id=land, layout_detail_id=layout)
+    return HttpResponseRedirect(url)
 
 
 def billing(request):

@@ -1,76 +1,93 @@
-{%extends 'grom/base.html' %}
-{%load staticfiles %}
+{%extends 'grom/base.html'%}
 
-
-{%block title%} project {%endblock title%}
+{%block title%}Project Detail{%endblock title%}
 
 {%block content%}
-
+      <style type="text/css">
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+          -webkit-appearance: none; 
+          margin: 0; 
+        }
+      </style>
 
       <!-- Tools -->
       <section id='tools'>
         <ul class='breadcrumb' id='breadcrumb'>
-          <li class='title'>Project Information</li>
+          <li class='title'>Project Detail</li>
         </ul>
         <div id='toolbar'>
-          <div class='label label-info'>
-            Info
-          </div>
+          
         </div>
       </section>
       <!-- Content -->
       <div id='content'>
-        <div class='panel panel-default grid'>
+        <div class='panel panel-default'>
           <div class='panel-heading'>
             <i class='icon-user icon-large'></i>
-            <a href="#">Add New Project</a>
+            Add New Project
           </div>
-          <div class='panel-body filters'>
-            <div class='row'>
-              <div class='col-md-3'>
-                <div class='input-group'>
-                  <input class='form-control' placeholder='Quick search...' type='text'>
-                  <span class='input-group-btn'>
-                    <button class='btn' type='button'>
-                      <i class='icon-search'></i>
-                    </button>
-                  </span>
+          <div class='panel-body'>
+            <form method="POST" action="/add_project/">
+              {%csrf_token %}
+              <fieldset>
+                <div class='form-group col-md-2'>
+                  <input class='form-control' placeholder='Project Name' type='text' required=""   name="project_name" />
                 </div>
-              </div>
-            </div>
+                <div class='form-group col-md-4'>
+                  <input class='form-control' placeholder='short Description' type='text' required="" name="description" />
+                </div>
+                <div class='form-group col-md-2'>
+                  <select class="form-control" required="" name="land">
+                    <option>Select Land</option>
+                    {% for land in land_list %}
+                      <option value="{{land.id}}">{{land.belonging_to}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class='form-group col-md-2'>
+                  <select class="form-control" required="" name="layout">
+                    <option>Select Layout</option>
+                    {% for layout in layout_list %}
+                      <option value="{{layout.id}}">{{layout.layout_name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <input type="hidden" name="url" value="{{request.path}}" />
+                <div class='form-group col-md-2'>
+                  <button class='btn btn-default' type='submit'>Add To List</button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+        <div class='panel panel-default grid'>
+          <div class='panel-heading'>
+            <i class='icon-table icon-large'></i>
+            Project List
           </div>
           <table class='table'>
             <thead>
               <tr>
-                <th>Serial No</th>
+                <th>S.No</th>
                 <th>Project Name</th>
                 <th>Description</th>
-                <th class='actions'>
-                  Actions
-                </th>
+                <th>Land</th>
+                <th>Layout</th>
               </tr>
             </thead>
             <tbody>
-            {% for project in projects %}
-              <tr>
-                <td>{{forloop.counter}}</td>
-                <td>{{project.project_name}}</td>
-                <td>{{project.description}}</td>
-                <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="/customer_detail/{{customer.id}}/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='/edit_customer_page/{{customer.id}}/'>
-                    <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='/delete_customer/{{customer.id}}/' >
-                    <i class='icon-trash'></i>
-                  </a>
-                </td>
-              </tr>
-            {% endfor %}
-
+              {% for project in projects%}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{project.project_name}}</td>
+                  <td>{{project.description}}</td>
+                  <td>{{project.land_detail_id}}</td>
+                  <td>{{project.layout_detail_id}}</td>
+                </tr>
+              {% endfor %}
             </tbody>
           </table>
-
         </div>
       </div>
 {%endblock content%}
