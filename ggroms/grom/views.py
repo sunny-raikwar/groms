@@ -277,11 +277,6 @@ def customer_detail(request, customer_id):
     return render(request, 'grom/customer_detail.html', {'customer': customer})
 
 
-def plots(request):
-    plots = PlotDetail.objects.all()
-    return render(request, 'grom/plots.html', {'plots': plots})
-
-
 # ==================project views======================
 def projects(request):
     layout_list = LayoutDetail.objects.all()
@@ -304,6 +299,82 @@ def add_project(request):
             project_name=project_name, description=description,
             land_detail_id=land, layout_detail_id=layout)
     return HttpResponseRedirect(url)
+
+
+def edit_project(request):
+    url = request.POST['url']
+    project_id = request.POST['project_id']
+    project_name = request.POST['project_name']
+    description = request.POST['description']
+    land = LandDetail.objects.get(id=request.POST['land'])
+    layout = LayoutDetail.objects.get(id=request.POST['layout'])
+    ProjectDetail.objects.filter(id=project_id).update(
+        project_name=project_name, description=description,
+        land_detail_id=land, layout_detail_id=layout)
+    return HttpResponseRedirect(url)
+
+
+def delete_project(request, project_id):
+    project = ProjectDetail.objects.get(id=project_id)
+    project.delete()
+    return HttpResponseRedirect('/projects/')
+
+
+# ====================plot views============================
+def plots(request):
+    projects = ProjectDetail.objects.all()
+    plots = PlotDetail.objects.all()
+    context = {'projects': projects, 'plots': plots}
+    return render(request, 'grom/plots.html', context)
+
+
+def add_plot(request):
+    url = request.POST['url']
+    plot_number = request.POST['plot_number']
+    date = request.POST['date']
+    total_area = request.POST['total_area']
+    tan_area = request.POST['tan_area']
+    net_area = request.POST['net_area']
+    status = request.POST['status']
+    remark = request.POST['remark']
+    project = ProjectDetail.objects.get(id=request.POST['project_id'])
+    try:
+        plot = PlotDetail.objects.get(plot_number=plot_number, project_id=project)
+    except PlotDetail.DoesNotExist:
+        PlotDetail.objects.create(
+            plot_number=plot_number, remark=remark, date=date,
+            total_area=total_area, tan_area=tan_area, net_area=net_area,
+            status=status, project_id=project)
+    return HttpResponseRedirect(url)
+
+
+def edit_plot(request):
+    url = request.POST['url']
+    plot_id = request.POST['plot_id']
+    plot_number = request.POST['plot_number']
+    date = request.POST['date']
+    total_area = request.POST['total_area']
+    tan_area = request.POST['tan_area']
+    net_area = request.POST['net_area']
+    status = request.POST['status']
+    remark = request.POST['remark']
+    project = ProjectDetail.objects.get(id=request.POST['project_id'])
+    PlotDetail.objects.filter(id=plot_id).update(
+            plot_number=plot_number, remark=remark, date=date,
+            total_area=total_area, tan_area=tan_area, net_area=net_area,
+            status=status, project_id=project)
+    return HttpResponseRedirect(url)
+
+
+def plot_detail(request, plot_id):
+    plot = PlotDetail.objects.get(id=plot_id)
+    return render(request, 'grom/plot_detail.html', {'plot': plot})
+
+
+def delete_plot(request, plot_id):
+    plot = PlotDetail.objects.get(id=plot_id)
+    plot.delete()
+    return HttpResponseRedirect('/plots/')
 
 
 def billing(request):

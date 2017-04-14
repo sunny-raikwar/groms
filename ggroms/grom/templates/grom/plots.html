@@ -5,6 +5,188 @@
 {%block title%} plot {%endblock title%}
 
 {%block content%}
+      <!-- add plot Modal -->
+        <div id="add_plot" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Add New Plot</h4>
+              </div>
+              <div class="modal-body">
+                <form class = "form-horizontal" method = "post" action = "/add_plot/">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Plot Number: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="plot_number" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Date: </label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" name="date" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Total Area: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="total_area" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Tan Area: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="tan_area" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Net Area: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="net_area" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Status: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="status" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Remark: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="remark" required />
+                  </div>
+                </div>
+                <div class = "form-group">
+                  <label for="" class="col-sm-3 control-label">Project </label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="project_id" required>
+                      <option value="">Select Project</option>
+                      {% for project in projects %}
+                        <option value="{{project.id}}">{{project.project_name}}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                </div>
+                <input name="url" value="{{request.path}}" type="hidden"></input>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      <!-- end of the modal -->
+
+      <!-- edit plot Modal -->
+        <div id="edit_plot" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Edit Plot Info</h4>
+              </div>
+              <div class="modal-body">
+                <form class = "form-horizontal" method = "post" action = "/edit_plot/">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Plot Number: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" id="plot_number" name="plot_number" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Date: </label>
+                  <div class="col-sm-9">
+                    <input type="date" class="form-control" id="date" name="date" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Total Area: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="total_area" id="total_area" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Tan Area: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="tan_area" id="tan_area" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Net Area: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="net_area" id="net_area" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Status: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="status" id="status" />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">Remark: </label>
+                  <div class="col-sm-9">
+                    <input type="text" class="form-control" name="remark" id="remark" />
+                  </div>
+                </div>
+                <div class = "form-group">
+                  <label for="" class="col-sm-3 control-label">Project </label>
+                  <div class="col-sm-9">
+                    <select class="form-control" name="project_id" id="project_id">
+                      <option value="">Select Project</option>
+                      {% for project in projects %}
+                        <option value="{{project.id}}">{{project.project_name}}</option>
+                      {% endfor %}
+                    </select>
+                    </div>
+                </div>
+                <input name="plot_id" id="plotid" type="hidden"></input>
+                <input name="url" value="{{request.path}}" type="hidden"></input>
+                <div class="form-group text-center">
+                  <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+              </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <script type="text/javascript">
+        $('#edit_plot').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var plot_id = button.data('id') // Extract info from data-* attributes
+            var plot_number = button.data('plotnumber')
+            var total_area = button.data('totalarea')
+            var date = button.data('date')
+            var tan_area = button.data('tanarea')
+            var net_area = button.data('netarea')
+            var status = button.data('status')
+            var remark = button.data('remark')
+            var project = button.data('project')
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('#plotid').val(plot_id);
+            modal.find('#plot_number').val(plot_number);
+            modal.find('#total_area').val(total_area);
+            modal.find('#tan_area').val(tan_area);
+            modal.find('#net_area').val(net_area);
+            modal.find('#status').val(status);
+            modal.find('#remark').val(remark);
+            modal.find('#project_id').val(project);
+            modal.find('#date').val(date);
+          })
+        </script>
+      <!-- end of the modal -->
 
 
       <!-- Tools -->
@@ -13,9 +195,6 @@
           <li class='title'>Plots Information</li>
         </ul>
         <div id='toolbar'>
-          <div class='label label-info'>
-            Info
-          </div>
         </div>
       </section>
       <!-- Content -->
@@ -23,21 +202,7 @@
         <div class='panel panel-default grid'>
           <div class='panel-heading'>
             <i class='icon-user icon-large'></i>
-            <a href="#">Add New plot</a>
-          </div>
-          <div class='panel-body filters'>
-            <div class='row'>
-              <div class='col-md-3'>
-                <div class='input-group'>
-                  <input class='form-control' placeholder='Quick search...' type='text'>
-                  <span class='input-group-btn'>
-                    <button class='btn' type='button'>
-                      <i class='icon-search'></i>
-                    </button>
-                  </span>
-                </div>
-              </div>
-            </div>
+            <button data-toggle="modal" data-target="#add_plot">Add New plot</button>
           </div>
           <table class='table'>
             <thead>
@@ -45,6 +210,7 @@
                 <th>Serial No</th>
                 <th>Plot Number</th>
                 <th>Total Area</th>
+                <th>Status</th>
                 <th>Project</th>
                 <th class='actions'>
                   Actions
@@ -57,13 +223,14 @@
                 <td>{{forloop.counter}}</td>
                 <td>{{plot.plot_number}}</td>
                 <td>{{plot.total_area}}</td>
+                <td>{{plot.status}}</td>
                 <td>{{plot.project_id}}</td>
                 <td class='action'>
-                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="/customer_detail/{{customer.id}}/"><i class="icon-zoom-in"></i></a>
-                  <a class='btn btn-info' href='/edit_customer_page/{{customer.id}}/'>
+                  <a data-toggle="tooltip" title="View" class="btn btn-success" href="/plot_detail/{{plot.id}}/"><i class="icon-zoom-in"></i></a>
+                  <button class='btn btn-info' data-toggle="modal" data-target="#edit_plot" data-id="{{plot.id}}" data-plotnumber="{{plot.plot_number}}" data-remark="{{plot.remark}}" data-date="{{plot.date|date:'Y-m-d'}}" data-totalarea="{{plot.total_area}}" data-tanarea="{{plot.tan_area}}" data-netarea="{{plot.net_area}}" data-status="{{plot.status}}" data-project="{{plot.project_id.id}}">
                     <i class='icon-edit'></i>
-                  </a>
-                  <a class='btn btn-danger' href='/delete_customer/{{customer.id}}/' >
+                  </button>
+                  <a class='btn btn-danger' href='/delete_plot/{{plot.id}}/' >
                     <i class='icon-trash'></i>
                   </a>
                 </td>

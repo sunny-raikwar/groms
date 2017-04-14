@@ -3,6 +3,84 @@
 {%block title%}Project Detail{%endblock title%}
 
 {%block content%}
+      <!-- Modal -->
+      <div id="edit_project" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Edit Project Detail</h4>
+            </div>
+            <div class="modal-body">
+              <form class = "form-horizontal" method = "post" action = "/edit_project/">
+              {% csrf_token %}
+              <div class="form-group">
+                <label for="table_name" class="col-sm-3 control-label">Project Name: </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="project_name" name="project_name" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="is_active" class="col-sm-3 control-label">Project Description: </label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" id="project_desc" name="description"/>
+                </div>
+              </div>
+              <div class = "form-group">
+                <label for="" class="col-sm-3 control-label">Land </label>
+                <div class="col-sm-9">
+                  <select class="form-control" name="land" id="land" required>
+                    <option value="">Select Land</option>
+                    {% for land in land_list %}
+                      <option value="{{land.id}}">{{land.belonging_to}}</option>
+                    {% endfor %}
+                  </select>
+                  </div>
+              </div>
+              <div class = "form-group">
+                <label for="" class="col-sm-3 control-label">Layout </label>
+                <div class="col-sm-9">
+                  <select class="form-control" name="layout" id="layout" required>
+                    <option value="">Select Layout</option>
+                    {% for layout in layout_list %}
+                      <option value="{{layout.id}}">{{layout.layout_name}}</option>
+                    {% endfor %}
+                  </select>
+                  </div>
+              </div>
+              <input name="project_id" id="projectid" type="hidden"></input>
+              <input name="url" value="{{request.path}}" type="hidden"></input>
+              <div class="form-group text-center">
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <script type="text/javascript">
+        $('#edit_project').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget) // Button that triggered the modal
+          var project_id = button.data('id') // Extract info from data-* attributes
+          var project_name = button.data('name')
+          var project_desc = button.data('description')
+          var land = button.data('land')
+          var layout = button.data('layout')
+          // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+          var modal = $(this)
+          modal.find('#projectid').val(project_id);
+          modal.find('#project_name').val(project_name);
+          modal.find('#project_desc').val(project_desc);
+          modal.find('#land').val(land);
+          modal.find('#layout').val(layout);
+        })
+      </script>
+    <!-- end of the modal -->
+
       <style type="text/css">
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
@@ -74,6 +152,7 @@
                 <th>Description</th>
                 <th>Land</th>
                 <th>Layout</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -81,9 +160,17 @@
                 <tr>
                   <td>{{forloop.counter}}</td>
                   <td>{{project.project_name}}</td>
-                  <td>{{project.description}}</td>
+                  <td>{{project.description|truncatewords_html:5}}</td>
                   <td>{{project.land_detail_id}}</td>
                   <td>{{project.layout_detail_id}}</td>
+                  <td class="action">
+                      <button class='btn btn-info' data-toggle="modal" data-target="#edit_project" data-id="{{project.id}}" data-name="{{project.project_name}}" data-description="{{project.description}}" data-land="{{project.land_detail_id.id}}" data-layout="{{project.layout_detail_id.id}}">
+                        <i class='icon-edit'></i>
+                      </button>
+                      <a class='btn btn-danger' href='/delete_project/{{project.id}}/' >
+                        <i class='icon-trash'></i>
+                      </a>
+                  </td>
                 </tr>
               {% endfor %}
             </tbody>

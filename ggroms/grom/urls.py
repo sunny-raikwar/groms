@@ -34,9 +34,15 @@ urlpatterns = [
     url(r'^agent_detail/(?P<agent_id>.+)/$', views.agent_detail),
 
     url(r'^plots/$', views.plots),
+    url(r'^add_plot/$', views.add_plot),
+    url(r'^edit_plot/$', views.edit_plot),
+    url(r'^plot_detail/(?P<plot_id>.+)/$', views.plot_detail),
+    url(r'^delete_plot/(?P<plot_id>.+)/$', views.delete_plot),
 
     url(r'^projects/$', views.projects),
     url(r'^add_project/$', views.add_project),
+    url(r'^edit_project/$', views.edit_project),
+    url(r'^delete_project/(?P<project_id>.+)/$', views.delete_project),
 
 
     url(r'^billing/$', views.billing),
