@@ -1,7 +1,7 @@
 {% extends 'grom/base.html' %}
 {% load staticfiles %}
 
-{%block title%} AgentInfo {%endblock title%}
+{%block title%} setting {%endblock title%}
 
 {%block content%}
 
@@ -26,8 +26,12 @@
           </div>
           <div class='panel-body filters'>
             <div class = "row">
-				
-			</div>
+				      {% if graph %}
+              <div style="width:600;height:500">
+              {{ graph|safe }}
+              </div>
+              {% endif %}
+			       </div>
           </div>
 
         </div>
