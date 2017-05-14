@@ -37,7 +37,7 @@
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Middle Name </label>
-                  <input class='form-control' placeholder='Enter Middle Name' type='text' name='middle_name' required="required">
+                  <input class='form-control' placeholder='Enter Middle Name' type='text' name='middle_name'>
                 </div>
                 <div class='form-group col-md-8'>
                   <label class='control-label'>Last Name</label>
@@ -76,6 +76,24 @@
                   <select name="gender" class="form-control">
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
+                  </select>
+                </div>
+                <div class='form-group col-md-8'>
+                  <label class="control-label">Plot</label>
+                  <select name="plot" class="form-control">
+                    <option>Select Plot</option>
+                    {% for plot in plots %}
+                      <option value="{{plot.id}}">{{plot}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="form-group col-md-8">
+                  <label class="control-label">Nomini</label>
+                  <select name="nomini" class="form-control">
+                    <option>Select Nomini</option>
+                    {% for nomini in nomini_list %}
+                      <option value="{{nomini.id}}">{{nomini}}</option>
+                    {% endfor %}
                   </select>
                 </div>
                 <input type="hidden" name="url" value ="{{request.path}}">

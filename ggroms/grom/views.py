@@ -44,8 +44,8 @@ def setting(request):
                         mode="lines",  name='1st Trace')
 
     data=go.Data([trace1])
-    layout=go.Layout(title="Meine Daten", xaxis={'title':'x1'}, yaxis={'title':'x2'})
-    figure=go.Figure(data=data,layout=layout)
+    layout=go.Layout(title="Test graph", xaxis={'title':'x axis'}, yaxis={'title':'y axis'})
+    figure=go.Figure(data=data, layout=layout)
     div = opy.plot(figure, auto_open=False, output_type='div')
     context = {'graph': div}
     return render(request, 'grom/setting.html', context)
@@ -224,7 +224,10 @@ def customer(request):
 
 
 def add_customer_page(request):
-    return render(request, 'grom/add_customer_page.html')
+    plots = PlotDetail.objects.all()
+    nomini_list = NominiDetail.objects.all()
+    context = {'plots': plots, 'nomini_list': nomini_list}
+    return render(request, 'grom/add_customer_page.html', context)
 
 
 def add_customer(request):
@@ -240,6 +243,8 @@ def add_customer(request):
     email = request.POST['email']
     gender = request.POST['gender']
     date_of_joining = request.POST['date_of_joining']
+    plot = PlotDetail.objects.get(id=request.POST['plot'])
+    nomini = NominiDetail.objects.get(id=request.POST['nomini'])
 
     try:
         customer = CustomerDetail.objects.get(pancard=pancard)
@@ -249,13 +254,17 @@ def add_customer(request):
             pancard=pancard, first_name=first_name, middle_name=middle_name,
             last_name=last_name, date_of_birth=date_of_birth,
             contact_no=contact_no, alternate_contact_no=alt_contact_no,
-            address=address, email=email, gender=gender, date_of_joining=date_of_joining)
+            address=address, email=email, gender=gender, date_of_joining=date_of_joining,
+            plot=plot, nomini=nomini)
     return HttpResponseRedirect('/customer/')
 
 
 def edit_customer_page(request, customer_id):
+    plots = PlotDetail.objects.all()
+    nomini_list = NominiDetail.objects.all()
     customer = CustomerDetail.objects.get(id=customer_id)
-    return render(request, 'grom/edit_customer_page.html', {'customer': customer})
+    context = {'plots': plots, 'nomini_list': nomini_list, 'customer': customer}
+    return render(request, 'grom/edit_customer_page.html', context)
 
 
 def edit_customer(request, customer_id):
@@ -270,11 +279,14 @@ def edit_customer(request, customer_id):
     email = request.POST['email']
     gender = request.POST['gender']
     date_of_joining = request.POST['date_of_joining']
+    plot = PlotDetail.objects.get(id=request.POST['plot'])
+    nomini = NominiDetail.objects.get(id=request.POST['nomini'])
     CustomerDetail.objects.filter(id=customer_id).update(
             pancard=pancard, first_name=first_name, middle_name=middle_name,
             last_name=last_name, date_of_birth=date_of_birth,
             contact_no=contact_no, alternate_contact_no=alt_contact_no,
-            address=address, email=email, gender=gender, date_of_joining=date_of_joining)
+            address=address, email=email, gender=gender, date_of_joining=date_of_joining,
+            plot=plot, nomini=nomini)
     return HttpResponseRedirect('/customer/')
 
 

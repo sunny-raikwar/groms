@@ -38,6 +38,46 @@ class LandDetail(models.Model):
 		return self.survey_no
 
 
+class LayoutDetail(models.Model):
+	layout_name = models.CharField(max_length = 50)
+	remark = models.TextField()
+	date = models.DateField()
+	area_under_layout = models.FloatField()
+	area_under_plot = models.FloatField()
+	area_under_possession = models.FloatField()
+	area_under_open_space = models.FloatField()
+	area_under_public_utility = models.FloatField()
+	area_under_road = models.FloatField()
+	land_detail_id = models.ForeignKey('LandDetail')
+
+	def __str__(self):
+		return self.layout_name
+
+
+class ProjectDetail(models.Model):
+	project_name = models.CharField(max_length = 50)
+	description = models.TextField()
+	land_detail_id = models.ForeignKey('LandDetail')
+	layout_detail_id = models.ForeignKey('LayoutDetail')
+
+	def __str__(self):
+		return self.project_name
+
+
+class PlotDetail(models.Model):
+	plot_number = models.CharField(max_length = 10)
+	remark = models.TextField()
+	date = models.DateField()
+	total_area = models.FloatField()
+	tan_area = models.FloatField()
+	net_area = models.FloatField()
+	status = models.CharField(max_length = 15)
+	project_id = models.ForeignKey('ProjectDetail')
+
+	def __str__(self):
+		return self.plot_number
+
+
 class AgentAccount(models.Model):
 	account_number = models.CharField(max_length=20)
 
@@ -67,7 +107,6 @@ class NominiDetail(models.Model):
 	address = models.TextField()
 	contact_no = models.CharField(max_length=15)
 	email = models.EmailField(max_length=100, null=True)
-	belong_to = models.CharField(max_length=10)
 
 	def __str__(self):
 		return self.fullname
@@ -116,35 +155,12 @@ class CustomerDetail(models.Model):
 	email = models.EmailField(null=True)
 	date_of_joining = models.DateField()
 	gender = models.CharField(max_length=6, choices=gender_choices)
+	plot = models.ForeignKey('PlotDetail', default=1)
+	nomini = models.ForeignKey('NominiDetail', default=1)
 
 	def __str__(self):
 		return self.first_name
 
-
-class LayoutDetail(models.Model):
-	layout_name = models.CharField(max_length = 50)
-	remark = models.TextField()
-	date = models.DateField()
-	area_under_layout = models.FloatField()
-	area_under_plot = models.FloatField()
-	area_under_possession = models.FloatField()
-	area_under_open_space = models.FloatField()
-	area_under_public_utility = models.FloatField()
-	area_under_road = models.FloatField()
-	land_detail_id = models.ForeignKey('LandDetail')
-
-	def __str__(self):
-		return self.layout_name
-
-
-class ProjectDetail(models.Model):
-	project_name = models.CharField(max_length = 50)
-	description = models.TextField()
-	land_detail_id = models.ForeignKey('LandDetail')
-	layout_detail_id = models.ForeignKey('LayoutDetail')
-
-	def __str__(self):
-		return self.project_name
 
 
 # class PlotCategory(models.Model):
@@ -161,17 +177,3 @@ class ProjectDetail(models.Model):
 
 # 	def __str__(self):
 # 		return self.first_name
-
-
-class PlotDetail(models.Model):
-	plot_number = models.CharField(max_length = 10)
-	remark = models.TextField()
-	date = models.DateField()
-	total_area = models.FloatField()
-	tan_area = models.FloatField()
-	net_area = models.FloatField()
-	status = models.CharField(max_length = 15)
-	project_id = models.ForeignKey('ProjectDetail')
-
-	def __str__(self):
-		return self.plot_number
